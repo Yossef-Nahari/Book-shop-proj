@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body onload="onInit()">
+
+    <header>
+        <h1>Welcome to <span class="i">i</span>Book <span>!</span></h1>
+    </header>
+
+    <section class="book-filter">
+        <h2>Filter</h2>
+        <label>
+            Min Rate:
+            <input type="range" min="0" max="10" value="0" class="filter-rate-range"
+                onchange="this.title=this.value;onSetFilterBy({minRate: this.value})" />
+            Max Price:
+            <input type="range" min="0" max="300" value="300" class="filter-price-range"
+                onchange="this.title=this.value;onSetFilterBy({maxPrice: this.value})" />
+        </label>”
+        <hr />
+        <div class="sortWord">
+            Sort by:
+            <select class="sort-by" onchange="onSetSortBy()">
+                <option value="">Select Sorting</option>
+                <option value="rate">By Rate</option>
+                <option value="maxPrice">Price</option>
+            </select>
+            <label>
+                Descending
+                <input class="sort-desc" type="checkbox" onchange="onSetSortBy()" />
+            </label>
+        </div>
+        <hr />
+        <button class="addBtn" onclick="onAddBook()">Add 📗</button>
+    </section>
+
+    <table>
+        <thead class="thread-container"></thead>
+        <tbody class="tbody-container"></tbody>
+    </table>
+
+    <div class="update-modal">
+        <button class="exit-btn" onclick="onCloseModal()" id="exit-btn">X</button>
+        <h2 class="id-h2"></h2>
+        <h1 class="name-h1"></h1>
+        <form>
+            <div class="price-h1"></div>
+            <button class=" btns plus" onclick="onRateClick(event, '+')">+</button>
+            <h2 class="rate-h1"></h2>
+            <button class=" btns minus" onclick="onRateClick(event, '-')">-</button>
+            <button class="enter-btn" onclick="onBookUpdate(event)"> Update</button>
+        </form>
+    </div>
+
+    <div class="read-modal">
+        <h2 class="read-h2 id"></h2>
+        <h1 class="read-h1 name"></h1>
+        <h2 class="read-h2">Summary</h2>
+        <h3 class="read-h3 lorem"></h3>
+    </div>
+
+    <div class="user-msg"></div>
+
+    <script src="js/util.js"></script>
+    <script src="js/services/storage-service.js"></script>
+    <script src="js/services/book-shop-service.js"></script>
+    <script src="js/controller.js"></script>
+</body>
+
+</html>
